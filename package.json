@@ -1,0 +1,67 @@
+{
+  "name": "cross-platform-specs",
+  "version": "0.0.1",
+  "description": "Aggregation of functions to get system specs with a unified API for web and node.",
+  "main": "./app/dist/esm/crossPlatformSpecs.mjs",
+  "types": "./app/dist/esm/crossPlatformSpecs.d.ts",
+  "bin": "./app/dist/cjs/cli/crossPlatformSpecs-cli.js",
+
+  "exports": {
+    "node": {
+      "import": "./app/dist/esm/crossPlatformSpecs.mjs",
+      "require": "./app/dist/cjs/crossPlatformSpecs.js"
+    },
+    "default": "./app/dist/esm/crossPlatformSpecs.mjs"
+  },
+  "scripts": {
+    "build": "del-cli app/dist && concurrently \"npm run buildESM\" \"npm run buildCJS\" --raw",
+    "buildESM": "tsc -p ./tsconfig.prod.esm.json && mjsify app/dist esm cjs",
+    "buildCJS": "tsc -p ./tsconfig.prod.cjs.json",
+    "dev": "npm run devWeb",
+    "devWeb": "rollup --config rollup.web.dev.config.js -w",
+    "devNode": "rollup --config rollup.node.dev.config.js -w",
+    "deploy": "npm run build && npm publish",
+    "repl": "node ./repl/dist/crossPlatformSpecs-repl.js",
+    "start": "npm run repl",
+    "buildTest": "rollup --config rollup.node.test.config.js",
+    "test": "npm run buildTest && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximilianMairinger/crossPlatformSpecs.git"
+  },
+  "keywords": [
+  "cross-platform",
+  "specs",
+  "web",
+  "node",
+  "os",
+  "name"
+],
+  "author": "maximilianMairinger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maximilianMairinger/crossPlatformSpecs/issues"
+  },
+  "homepage": "https://github.com/maximilianMairinger/crossPlatformSpecs#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@rollup/plugin-typescript": "^5.0.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^13.13.4",
+    "concurrently": "^8.0.1",
+    "del-cli": "^5.0.0",
+    "jest": "^26.6.3",
+    "mjsify": "^2.0.6",
+    "rollup": "^3.21.7",
+    "tslib": "2.0.0",
+    "typescript": "^5.0.4",
+    "webpack-merge": "^5.0.9"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "req-package-json": "^2.1.2"
+  }
+}
