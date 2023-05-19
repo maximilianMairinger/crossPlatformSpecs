@@ -3,9 +3,8 @@ name: CI
 on: push
 
 jobs:
-
-  CI: 
-    name: CI
+  test: 
+    name: test
     runs-on: ubuntu-latest
     
     steps: 
@@ -15,6 +14,102 @@ jobs:
         node-version: '16.x'
     - run: |
         npm i
-        npm test --if-present
+        npm run test --if-present
       env:
         CI: true
+
+  nodeEsm: 
+    name: node esm
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '16.x'
+    - run: |
+        npm i
+        npm run buildESM
+        node CI/nodeEsm.mjs
+      env:
+        CI: true
+
+
+  nodeCjs:
+    name: node cjs
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '16.x'
+    - run: |
+        npm i
+        npm run buildCJS
+        node CI/nodeCjs.js
+      env:
+        CI: true
+
+  
+  deno:
+    name: deno
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '16.x'
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+    - run: |
+        npm i
+        npm run buildESM
+        deno run CI/nodeEsm.mjs
+      env:
+        CI: true
+
+  cli:
+    name: cli
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '16.x'
+    - run: |
+        npm i
+        npm run buildESM
+        npm link
+        cross-platform-specs --help
+        cross-platform-specs environment
+        cross-platform-specs osName
+        cross-platform-specs osVersion
+        cross-platform-specs runtime
+        cross-platform-specs runtimeVersion
+        cross-platform-specs engine
+        cross-platform-specs engineVersion
+        cross-platform-specs cpuName
+        cross-platform-specs cpuCores
+        cross-platform-specs cpuArch
+        cross-platform-specs memAvailable
+        cross-platform-specs memFree
+        cross-platform-specs
+      env:
+        CI: true
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
