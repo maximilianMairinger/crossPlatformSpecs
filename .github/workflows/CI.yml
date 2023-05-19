@@ -8,13 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '16.x'
-    - run: |
-        npm i
-        npm run test --if-present
+
+
+    - name: Install dependencies
+      run: npm i
+    - name: Testing
+      run: npm run test --if-present
+
       env:
         CI: true
 
@@ -23,14 +29,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '16.x'
-    - run: |
-        npm i
-        npm run buildESM
-        node CI/nodeEsm.mjs
+
+    - name: Install dependencies
+      run: npm i
+    - name: Building
+      run: npm run buildESM
+    - name: Run checks
+      run: node CI/nodeEsm.mjs
+
       env:
         CI: true
 
@@ -40,14 +52,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '16.x'
-    - run: |
-        npm i
-        npm run buildCJS
-        node CI/nodeCjs.js
+
+    - name: Install dependencies
+      run: npm i
+    - name: Building
+      run: npm run buildCJS
+    - name: Run checks
+      run: node CI/nodeCjs.js
+
       env:
         CI: true
 
@@ -57,17 +75,24 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '16.x'
-    - uses: denoland/setup-deno@v1
+    - name: Setup Deno
+      uses: denoland/setup-deno@v1
       with:
         deno-version: v1.x
-    - run: |
-        npm i
-        npm run buildESM
-        deno run CI/nodeEsm.mjs
+
+    - name: Install dependencies
+      run: npm i
+    - name: Building
+      run: npm run buildESM
+    - name: Run checks
+      run: deno run CI/nodeEsm.mjs
+
       env:
         CI: true
 
@@ -76,14 +101,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Setup Node
+      uses: actions/setup-node@master
       with:
         node-version: '16.x'
-    - run: |
-        npm i
-        npm run buildESM
-        npm link
+
+    - name: Install dependencies
+      run: npm i
+    - name: Building
+      run: npm run buildESM
+    - name: Linking CLI
+      run: npm link
+    - name: Run tests
+      run: |
         cross-platform-specs --help
         cross-platform-specs environment
         cross-platform-specs osName
@@ -98,6 +130,7 @@ jobs:
         cross-platform-specs memAvailable
         cross-platform-specs memFree
         cross-platform-specs
+        
       env:
         CI: true
 
