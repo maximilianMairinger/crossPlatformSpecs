@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import crossPlatformSpecs from "../crossPlatformSpecs"
+import crossPlatformSpecs from "../crossPlatformSpecs.js"
 import { program } from "commander"
 import reqPackageJson, { reqPackagePath } from "req-package-json"
 import {promises as fs} from "fs"
@@ -14,10 +14,10 @@ program
   .option('-s, --silent', 'silence stdout')
   // .argument('<required example>', "description of required example")
   // .argument('[optional example]', "description of optional example")
-  .action((...args, options) => {
+  .action((arg1, arg2, options) => {
     console.setVerbose(!options.silent)
     
-    crossPlatformSpecs(...args)
+    // crossPlatformSpecs()
     
     
   })

@@ -1,4 +1,4 @@
-import crossPlatformSpecs from "../../app/src/crossPlatformSpecs"
+import crossPlatformSpecs from "../../app/src/crossPlatformSpecs.js"
 
 describe("core", () => {
   

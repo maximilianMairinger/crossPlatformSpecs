@@ -5,7 +5,7 @@ import json from '@rollup/plugin-json'
 
 
 export default {
-  input: 'repl/src/repl.ts',
+  input: './repl/src/repl.ts',
   output: {
     file: 'repl/dist/crossPlatformSpecs-repl.js',
     format: 'cjs',
@@ -13,7 +13,7 @@ export default {
   },
   sourcemap: true,
   plugins: [
-    typescript({tsconfig: "./tsconfig.dev.json", noEmitOnError: false, sourceMap: true}), 
+    typescript({tsconfig: "./tsconfig.dev.json", noEmitOnError: false, sourceMap: true }), 
     resolve({browser: true}),
     commonJS({
       include: 'node_modules/**'
