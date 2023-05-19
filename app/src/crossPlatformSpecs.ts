@@ -10,7 +10,7 @@
 import is from "platform-detect"
 import uaParser from "ua-parser-js"
 import prettyBytes from "pretty-bytes"
-
+import os from "os"
 
 
 export let environment = "?"
@@ -98,7 +98,6 @@ export let cpuName = "?"
 export let cpuCores = "?"
 export let cpuArch = "?"
 
-declare let os: typeof import("os")
 
 if (is.node) {
   if (isDeno) {
