@@ -4,7 +4,7 @@
   "description": "Aggregation of functions to get system specs with a unified API for web and node.",
   "main": "./app/dist/esm/crossPlatformSpecs.mjs",
   "types": "./app/dist/esm/crossPlatformSpecs.d.ts",
-  "bin": "./app/dist/cjs/cli/crossPlatformSpecs-cli.js",
+  "bin": "./app/dist/esm/cli/crossPlatformSpecs-cli.mjs",
   "exports": {
     "node": {
       "import": "./app/dist/esm/crossPlatformSpecs.mjs",
