@@ -1,6 +1,6 @@
 {
   "name": "cross-platform-specs",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Aggregation of functions to get system specs with a unified API for web and node.",
   "main": "./app/dist/esm/crossPlatformSpecs.mjs",
   "types": "./app/dist/esm/crossPlatformSpecs.d.ts",
