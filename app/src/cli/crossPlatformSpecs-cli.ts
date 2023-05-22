@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import * as specMod from "../crossPlatformSpecs.js"
+import * as specMod from "../crossPlatformSpecs"
 import { program } from "commander"
 import reqPackageJson, { reqPackagePath } from "req-package-json"
 const config = reqPackageJson()
