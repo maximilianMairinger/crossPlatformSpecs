@@ -10,7 +10,8 @@
 import is from "platform-detect"
 import uaParser from "ua-parser-js"
 import prettyBytes from "pretty-bytes"
-import os from "os"
+// @ts-ignore
+import os from "node:os"
 
 
 export let environment = "?"

@@ -91,7 +91,7 @@ jobs:
     - name: Building
       run: npm run buildESM
     - name: Run checks
-      run: deno run CI/deno.mjs
+      run: deno run --allow-sys CI/deno.mjs
 
       env:
         CI: true
