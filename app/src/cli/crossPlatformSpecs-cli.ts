@@ -2,8 +2,6 @@
 import * as specMod from "../crossPlatformSpecs.js"
 import { program } from "commander"
 import reqPackageJson, { reqPackagePath } from "req-package-json"
-import {promises as fs} from "fs"
-import * as path from "path"
 const config = reqPackageJson()
 // import * as console from "./../lib/logger"
 
