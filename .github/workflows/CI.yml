@@ -91,7 +91,7 @@ jobs:
     - name: Building
       run: npm run buildESM
     - name: Run checks
-      run: deno run CI/nodeEsm.mjs
+      run: deno run CI/deno.mjs
 
       env:
         CI: true
@@ -130,7 +130,7 @@ jobs:
         cross-platform-specs memAvailable
         cross-platform-specs memFree
         cross-platform-specs
-        
+
       env:
         CI: true
 
