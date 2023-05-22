@@ -117,6 +117,7 @@ jobs:
     - name: Run tests
       run: |
         cross-platform-specs --help
+        cross-platform-specs --version
         cross-platform-specs environment
         cross-platform-specs osName
         cross-platform-specs osVersion
