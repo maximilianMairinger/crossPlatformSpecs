@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import * as spec from "../crossPlatformSpecs.js"
+import * as specMod from "../crossPlatformSpecs.js"
 import { program } from "commander"
 import reqPackageJson, { reqPackagePath } from "req-package-json"
 import {promises as fs} from "fs"
@@ -19,8 +19,8 @@ program
   .action((spec, options) => {
     // console.setVerbose(!options.silent)
     
-    if (spec !== undefined) console.log(spec[spec])
-    else console.log(spec.allSpecs())
+    if (spec !== undefined) console.log(specMod[spec])
+    else console.log(specMod.allSpecs())
   })
 
 .parse(process.argv)
