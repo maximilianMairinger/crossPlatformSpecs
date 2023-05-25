@@ -4,7 +4,6 @@ import startServer from './server.mjs';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,6 +20,11 @@ await page.evaluate(await fs.readFile(path.join(__dirname, 'testDist', 'test.js'
 console.log("evaluated, now done")
 browser.close()
 // server.close()
+
+
+import reqPackageJson from 'req-package-json';
+const packageJson = reqPackageJson()
+if (packageJson.browser === undefined) throw new Error("package.json must have a browser field")
 
 
 
