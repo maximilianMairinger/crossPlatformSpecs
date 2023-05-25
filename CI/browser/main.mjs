@@ -20,7 +20,7 @@ console.log("started browser")
 await page.evaluate(await fs.readFile(path.join(__dirname, 'testDist', 'test.js'), "utf8"))
 console.log("evaluated, now done")
 browser.close()
-server.close()
+// server.close()
 
 
 
