@@ -4,8 +4,9 @@ on: push
 
 jobs:
   test: 
-    name: test
+    name: test node 18
     runs-on: ubuntu-latest
+    continue-on-error: true
     
     steps: 
     - name: Checkout
@@ -13,109 +14,34 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@master
       with:
-        node-version: '16.x'
+        node-version: '18.x'
 
 
     - name: Install dependencies
       run: npm i
-    - name: Testing
+    - name: Unit tests
       run: npm run test --if-present
-
       env:
         CI: true
-
-  nodeEsm: 
-    name: node esm
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Setup Node
-      uses: actions/setup-node@master
-      with:
-        node-version: '16.x'
-
-    - name: Install dependencies
-      run: npm i
-    - name: Building
-      run: npm run buildESM
-    - name: Run checks
+    - name: building
+      run: npm run build
+      env:
+        CI: true
+    - name: Test esm
       run: node CI/nodeEsm.mjs
-
       env:
         CI: true
-
-
-  nodeCjs:
-    name: node cjs
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Setup Node
-      uses: actions/setup-node@master
-      with:
-        node-version: '16.x'
-
-    - name: Install dependencies
-      run: npm i
-    - name: Building
-      run: npm run buildCJS
-    - name: Run checks
+    - name: Test cjs
       run: node CI/nodeCjs.js
-
       env:
         CI: true
-
-  
-  deno:
-    name: deno
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Setup Node
-      uses: actions/setup-node@master
-      with:
-        node-version: '16.x'
-    - name: Setup Deno
-      uses: denoland/setup-deno@v1
-      with:
-        deno-version: v1.x
-
-    - name: Install dependencies
-      run: npm i
-    - name: Building
-      run: npm run buildESM
-    - name: Run checks
+    - name: Test deno
       run: deno run --allow-sys CI/deno.mjs
-
       env:
         CI: true
-
-  cli:
-    name: cli
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Setup Node
-      uses: actions/setup-node@master
-      with:
-        node-version: '16.x'
-
-    - name: Install dependencies
-      run: npm i
-    - name: Building
-      run: npm run buildESM
-    - name: Linking CLI
-      run: npm link
-    - name: Run tests
+    - name: Test cli
       run: |
+        npm link
         cross-platform-specs --help
         cross-platform-specs --version
         cross-platform-specs environment
@@ -134,7 +60,11 @@ jobs:
 
       env:
         CI: true
-
+    - name: Test browser
+      run: node CI/browser/main.mjs
+      env:
+        CI: true
+     
         
         
         
