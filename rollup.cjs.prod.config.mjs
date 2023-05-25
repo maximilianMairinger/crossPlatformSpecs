@@ -9,13 +9,13 @@ export default {
   output: {
     file: 'app/dist/cjs/crossPlatformSpecs.js',
     format: 'cjs',
+    sourcemap: true
   },
   plugins: [
-    typescript({tsconfig: "./tsconfig.dev.json", noEmitOnError: false, sourceMap: true }), 
+    typescript({tsconfig: "./tsconfig.prod.cjs.json", noEmitOnError: false, sourceMap: true}), 
     resolve({modulesOnly: true, preferBuiltins: true}),
     commonJS({
-      include: 'node_modules/**',
-      exclude: "app/src/**"
+      include: 'node_modules/**'
     }),
     json()
   ]
