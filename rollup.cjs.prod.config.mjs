@@ -12,7 +12,7 @@ export default {
     sourcemap: true
   },
   plugins: [
-    typescript({tsconfig: "./tsconfig.prod.cjs.json", noEmitOnError: false, sourceMap: true}), 
+    typescript({tsconfig: "./tsconfig.cjs.json", noEmitOnError: false, sourceMap: true}), 
     resolve({modulesOnly: true, preferBuiltins: true}),
     commonJS({
       include: 'node_modules/**'
