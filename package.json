@@ -12,9 +12,10 @@
     },
     "default": "./app/dist/esm/crossPlatformSpecs.mjs"
   },
+  "browser": "./app/dist/browser/crossPlatformSpecs.js",
   "scripts": {
     "build": "del-cli app/dist && concurrently \"npm run buildESM\" \"npm run buildCJS\" --raw",
-    "buildESM": "tsc -p ./tsconfig.prod.esm.json && mjsify app/dist esm cjs",
+    "buildESM": "tsc -p ./tsconfig.prod.esm.json && ncp app/dist/esm app/dist/browser && concurrently \"mjsify app/dist esm cjs\" \"node replaceImports.mjs app/dist/browser\" --raw",
     "buildCJS": "tsc -p ./tsconfig.prod.cjs.json && npm run buildCJS2",
     "buildCJS2": "rollup --config rollup.cjs.prod.config.mjs",
     "dev": "npm run devWeb",
@@ -59,7 +60,9 @@
     "express": "^4.18.2",
     "jest": "^26.6.3",
     "mjsify": "^2.0.6",
+    "ncp": "^2.0.0",
     "open": "^9.1.0",
+    "recursive-readdir": "^2.2.3",
     "rollup": "^3.21.7",
     "tslib": "2.0.0",
     "typescript": "^5.0.4",
@@ -71,6 +74,7 @@
     "os-name": "^5.1.0",
     "platform-detect": "^3.0.1",
     "pretty-bytes": "^6.1.0",
+    "puppeteer": "^20.3.0",
     "req-package-json": "^2.1.2",
     "ua-parser-js": "^1.0.35"
   }
