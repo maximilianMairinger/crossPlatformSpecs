@@ -10,12 +10,12 @@ const __dirname = path.dirname(__filename);
 
 await build()
 console.log("built")
-const { port: _port, server: _server } = startServer()
-console.log("started server 1")
-const port = await _port
-const server = await _server
-console.log("started server 2")
-const { browser, page } = await startBrowser(port, true)
+// const { port: _port, server: _server } = startServer()
+// console.log("started server 1")
+// const port = await _port
+// const server = await _server
+// console.log("started server 2")
+const { browser, page } = await startBrowser(`file://${path.join(path.resolve(__dirname), "index.html")}`, true)
 console.log("started browser")
 await page.evaluate(await fs.readFile(path.join(__dirname, 'testDist', 'test.js'), "utf8"))
 console.log("evaluated, now done")

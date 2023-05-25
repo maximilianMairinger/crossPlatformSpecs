@@ -11,7 +11,7 @@ export default async function go(port_address, headless = !!process.env.CI) {
   const address = typeof port_address === "number" ? `http://127.0.0.1:${port_address}/` : port_address
 
   console.log("address", address)
-  await page.goto(address)
+  await page.goto(address, {waitUntil: "networkidle0"})
 
   return { browser, page }
 }
