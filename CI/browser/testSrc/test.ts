@@ -1,5 +1,5 @@
-import * as spec from "./../../../app/dist/browser/crossPlatformSpecs.mjs"
-import all from "./../../../app/dist/browser/crossPlatformSpecs.mjs"
+import * as spec from "./../../../app/dist/browser/crossPlatformSpecs"
+import all from "./../../../app/dist/browser/crossPlatformSpecs"
 
 console.log(all())
 console.log()
