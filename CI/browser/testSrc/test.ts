@@ -1,2 +1,1 @@
-console.log("lel")
-throw new Error("lel")
+import "./../../nodeEsm.mjs"
