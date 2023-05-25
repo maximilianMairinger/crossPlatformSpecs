@@ -22,7 +22,6 @@ program
   .name("replaceImports")
   .argument("<dir>", "Directory to search for imports")
   .action(async (dir) => {
-    console.log("Go")
     const files = fss.statSync(dir).isDirectory() ? await readDir(dir) : [dir]
     const proms = []
     
