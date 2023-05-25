@@ -4,9 +4,8 @@ on: push
 
 jobs:
   test: 
-    name: test node 18
+    name: test
     runs-on: ubuntu-latest
-    continue-on-error: true
     
     steps: 
     - name: Checkout
@@ -15,6 +14,11 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: '18.x'
+
+    - name: Setup Deno
+      uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
 
 
     - name: Install dependencies
